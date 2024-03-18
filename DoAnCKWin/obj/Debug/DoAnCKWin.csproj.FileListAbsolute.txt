@@ -20,3 +20,4 @@ D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.GenerateResource.cac
 D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.CoreCompileInputs.cache
 D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.exe
 D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.pdb
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.FrmBanHang.resources
