@@ -9,3 +9,14 @@ C:\Users\19110\source\repos\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.Gener
 C:\Users\19110\source\repos\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.CoreCompileInputs.cache
 C:\Users\19110\source\repos\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.exe
 C:\Users\19110\source\repos\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.pdb
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\bin\Debug\DoAnCKWin.exe.config
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\bin\Debug\DoAnCKWin.exe
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\bin\Debug\DoAnCKWin.pdb
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.AssemblyReference.cache
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.SuggestedBindingRedirects.cache
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.FrmDangNhap.resources
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.Properties.Resources.resources
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.GenerateResource.cache
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.CoreCompileInputs.cache
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.exe
+D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.pdb
