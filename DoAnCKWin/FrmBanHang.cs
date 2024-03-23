@@ -18,6 +18,25 @@ namespace DoAnCKWin
         public FrmBanHang()
         {
             InitializeComponent();
+            LoadLoaiHang();
+            LoadMANV();
+        }
+        void LoadHang(string tenhang)
+        {
+            cbHangHoa.DataSource = HangHoaDAO.Instance.LoadHangHoaCombobox(tenhang);
+            cbHangHoa.DisplayMember = "TenHang";
+        }
+        void LoadLoaiHang()
+        {
+            cbLoaiHang.DataSource = LoaiHangDAO.Instance.LayDsLoaiHang();
+            cbLoaiHang.DisplayMember = "TenLoaiHang";
+        }
+        private void cbLoaiHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string tenhang;
+            LoaiHangDTO selected = cbLoaiHang.SelectedItem as LoaiHangDTO;
+            tenhang = selected.Tenloaihang;
+            LoadHang(tenhang);
         }
         List<ThongTinHoaDon> list = new List<ThongTinHoaDon>();
         float TongTien;
@@ -54,14 +73,11 @@ namespace DoAnCKWin
         }
         void updateTongTienKH()
         {
-            /*float tien = TongTien;
-            string sdt = txtSdtGiamGia.Text;
-            TheDAO.Instance.UpdateTienThe(tien, sdt);*/
+            
         }
         void InHoaDon()
         {
-           /* ppdHoaDon.Document = pDHoaDon;
-            ppdHoaDon.ShowDialog();*/
+          
         }
         private void btnTaoHoaDon_Click(object sender, EventArgs e)
         {
@@ -155,26 +171,22 @@ namespace DoAnCKWin
             if (tl != DialogResult.OK)
                 e.Cancel = true;
         }
-        void LoadHang(string tenhang)
+       
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cbHangHoa.DataSource = HangHoaDAO.Instance.LoadHangHoaCombobox(tenhang);
-            cbHangHoa.DisplayMember = "TenHang";
+            if (KtraAdmin(ShareVar.tk))
+            {
+                FrmMain f = new FrmMain();
+                this.Hide();
+                f.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Chỉ quản lí mới vào được", "Thông báo",
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            }
         }
-        private void cbLoaiHang_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string tenhang;
-            LoaiHangDTO selected = cbLoaiHang.SelectedItem as LoaiHangDTO;
-            tenhang = selected.Tenloaihang;
-            LoadHang(tenhang);
-        }
-        void LoadLoaiHang()
-        {
-            cbLoaiHang.DataSource = LoaiHangDAO.Instance.LayDsLoaiHang();
-            cbLoaiHang.DisplayMember = "TenLoaiHang";
-        }
-        private void cbHangHoa_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
     }
 }
