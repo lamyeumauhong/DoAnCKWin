@@ -26,9 +26,11 @@ namespace DoAnCKWin
         private int flag = 0;
         void LoadHang(string tenhang)
         {
-            cbHangHoa.DataSource = HangHoaDAO.Instance.LoadHangHoaCombobox(tenhang);
-            cbHangHoa.DisplayMember = "TenHang";
+            List<HangHoaDTO> danhSachHangHoa = HangHoaDAO.Instance.LoadHangHoaCombobox(tenhang);
+            cbHangHoa.DataSource = danhSachHangHoa;
+            cbHangHoa.DisplayMember = "Tenhang";
         }
+
         void LoadLoaiHang()
         {
             cbLoaiHang.DataSource = LoaiHangDAO.Instance.LayDsLoaiHang();
@@ -59,13 +61,15 @@ namespace DoAnCKWin
         }
         void TinhTongTien()
         {
-            TongTien = 0;
-            foreach (ThongTinHoaDon tthd in list)
+            float tongTien = 0;
+            foreach (ListViewItem item in listViewHoaDon.Items)
             {
-                TongTien += tthd.Thanhtien;
+                float thanhTien = float.Parse(item.SubItems[4].Text);
+                tongTien += thanhTien;
             }
             CultureInfo culture = new CultureInfo("vi-VN");
-            txtThanhTien.Text = TongTien.ToString("c", culture);
+            txtThanhTien.Text = tongTien.ToString("c", culture);
+
         }
         void LoadMANV()
         {
@@ -80,6 +84,32 @@ namespace DoAnCKWin
             ppdHoaDon.Document = pDHoaDon;
             ppdHoaDon.ShowDialog();
         }
+        private void ThemSanPhamVaoListView(ThongTinHoaDon sanPham)
+        {
+            foreach (ListViewItem item in listViewHoaDon.Items)
+            {
+                if (item.SubItems[0].Text == sanPham.Mahang.ToString())
+                {
+                    // Sản phẩm đã tồn tại trong danh sách, cập nhật số lượng và thành tiền
+                    float soLuongMoi = float.Parse(item.SubItems[3].Text) + sanPham.Soluong;
+                    item.SubItems[3].Text = soLuongMoi.ToString();
+                    float thanhTienMoi = float.Parse(item.SubItems[4].Text) + (sanPham.Gia * sanPham.Soluong);
+                    item.SubItems[4].Text = thanhTienMoi.ToString();
+                    TinhTongTien();
+                    return;
+                }
+            }
+
+            // Nếu sản phẩm chưa tồn tại trong danh sách, thêm mới vào listViewHoaDon
+            ListViewItem newItem = new ListViewItem(sanPham.Mahang.ToString());
+            newItem.SubItems.Add(sanPham.Tenhang);
+            newItem.SubItems.Add(sanPham.Gia.ToString());
+            newItem.SubItems.Add(sanPham.Soluong.ToString());
+            newItem.SubItems.Add(sanPham.Thanhtien.ToString());
+            listViewHoaDon.Items.Add(newItem);
+            TinhTongTien();
+        }
+
         private void btnTaoHoaDon_Click(object sender, EventArgs e)
         {
             listViewHoaDon.Items.Clear();
@@ -130,20 +160,17 @@ namespace DoAnCKWin
                 return;
             }
             ThongTinHoaDon tthd = new ThongTinHoaDon();
-            HangHoaDTO hh = new HangHoaDTO();
-            hh = cbHangHoa.SelectedItem as HangHoaDTO;
+            HangHoaDTO hh = cbHangHoa.SelectedItem as HangHoaDTO;
             tthd.Mahang = hh.Mahang;
             tthd.Tenhang = hh.Tenhang;
             tthd.Gia = hh.GiaKM;
             tthd.Soluong = sl;
             tthd.Thanhtien = tthd.Gia * tthd.Soluong;
-            list.Add(tthd);
-            ListViewItem newItem = new ListViewItem(tthd.Mahang.ToString());
-            newItem.SubItems.Add(tthd.Tenhang.ToString());
-            newItem.SubItems.Add(tthd.Gia.ToString());
-            newItem.SubItems.Add(tthd.Soluong.ToString());
-            newItem.SubItems.Add(tthd.Thanhtien.ToString());
-            listViewHoaDon.Items.Add(newItem);
+
+            // Thêm sản phẩm vào danh sách hoặc cập nhật số lượng nếu sản phẩm đã tồn tại
+            ThemSanPhamVaoListView(tthd);
+
+            // Cập nhật giá trị của txtTongTien
             TinhTongTien();
         }
 
@@ -154,6 +181,15 @@ namespace DoAnCKWin
                 MessageBox.Show("Hóa Đơn chưa có mặt hàng nào!", "Thông báo");
                 return;
             }
+           /* foreach (ThongTinHoaDon tt in list)
+            {
+                int soLuongTonKho = HangHoaDAO.Instance.Soluongconkho(tt.Mahang);
+                if (tt.Soluong > soLuongTonKho)
+                {
+                    MessageBox.Show($"Số lượng tồn kho không đủ cho sản phẩm {tt.Tenhang}!", "Thông báo");
+                    return;
+                }
+            }*/
             int manv = Convert.ToInt32(txtMaNV.Text.Trim());
             HoaDonDAO.Instance.InsertBill(manv);
             int mahd = HoaDonDAO.Instance.LayIDMax();
