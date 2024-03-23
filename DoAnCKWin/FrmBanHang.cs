@@ -21,6 +21,9 @@ namespace DoAnCKWin
             LoadLoaiHang();
             LoadMANV();
         }
+        List<ThongTinHoaDon> list = new List<ThongTinHoaDon>();
+        float TongTien;
+        private int flag = 0;
         void LoadHang(string tenhang)
         {
             cbHangHoa.DataSource = HangHoaDAO.Instance.LoadHangHoaCombobox(tenhang);
@@ -38,9 +41,6 @@ namespace DoAnCKWin
             tenhang = selected.Tenloaihang;
             LoadHang(tenhang);
         }
-        List<ThongTinHoaDon> list = new List<ThongTinHoaDon>();
-        float TongTien;
-        private int flag = 0;
         bool KtraAdmin(TaiKhoanDTO tk)
         {
             return TaiKhoanDAO.Instance.KtraAdmin(tk);
@@ -77,7 +77,8 @@ namespace DoAnCKWin
         }
         void InHoaDon()
         {
-          
+            ppdHoaDon.Document = pDHoaDon;
+            ppdHoaDon.ShowDialog();
         }
         private void btnTaoHoaDon_Click(object sender, EventArgs e)
         {
@@ -148,7 +149,23 @@ namespace DoAnCKWin
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-            
+            if (list.Count() == 0)
+            {
+                MessageBox.Show("Hóa Đơn chưa có mặt hàng nào!", "Thông báo");
+                return;
+            }
+            int manv = Convert.ToInt32(txtMaNV.Text.Trim());
+            HoaDonDAO.Instance.InsertBill(manv);
+            int mahd = HoaDonDAO.Instance.LayIDMax();
+            foreach (ThongTinHoaDon tt in list)
+            {
+                BanHangDAO.Instance.InsertBillInfo(mahd, tt.Mahang, tt.Soluong);
+                HangHoaDAO.Instance.CapNhatLuongHang(tt.Mahang, tt.Soluong);
+            }
+            flag = 1;
+            HoaDonDAO.Instance.UpdateTongBill(mahd, TongTien);
+
+            MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK);
         }
 
         private void btnInHoaDon_Click(object sender, EventArgs e)
@@ -188,5 +205,112 @@ namespace DoAnCKWin
             }
         }
 
+
+        private void pDHoaDon_PrintPage_1(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            var w = pDHoaDon.DefaultPageSettings.PaperSize.Width;
+            e.Graphics.DrawString("Cửa hàng xe máy ",
+                new Font("Times New Roman", 16, FontStyle.Bold),
+                Brushes.Black, new Point(100, 20));
+            e.Graphics.DrawString(
+                string.Format("Mã hóa đơn:{0}", HoaDonDAO.Instance.LayIDMax()),
+                new Font("Times New Roman", 12, FontStyle.Bold),
+                Brushes.Black, new Point(w / 2 + 100, 20)
+                );
+            e.Graphics.DrawString(
+               string.Format("{0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm")),
+               new Font("Times New Roman", 12, FontStyle.Bold),
+               Brushes.Black, new Point(w / 2 + 100, 70)
+               );
+            e.Graphics.DrawString(
+              string.Format("Nhân viên thanh toán:{0}", NhanVienDAO.Instance.LayTTNV(ShareVar.tk.Manv).Rows[0]["TenNV"]),
+              new Font("Times New Roman", 12, FontStyle.Bold),
+              Brushes.Black, new Point(w / 2 + 100, 100)
+              );
+            Pen blackpen = new Pen(Color.Black, 1);
+            var y = 120;
+            Point p1 = new Point(10, y);
+            Point p2 = new Point(w - 10, y);
+            e.Graphics.DrawLine(blackpen, p1, p2);
+            y += 20;
+            e.Graphics.DrawString("Mã hàng",
+                new Font("Times New Roman", 11, FontStyle.Bold),
+                Brushes.Black,
+                new Point(10, y)
+                );
+            e.Graphics.DrawString("Tên hàng",
+               new Font("Times New Roman", 11, FontStyle.Bold),
+               Brushes.Black,
+               new Point(170, y)
+               );
+            e.Graphics.DrawString("Giá",
+               new Font("Times New Roman", 11, FontStyle.Bold),
+               Brushes.Black,
+               new Point(w / 2 - 70, y)
+               );
+            e.Graphics.DrawString("Số lượng",
+               new Font("Times New Roman", 11, FontStyle.Bold),
+               Brushes.Black,
+               new Point(w / 2 + 100, y)
+               );
+            e.Graphics.DrawString("Thành tiền",
+              new Font("Times New Roman", 11, FontStyle.Bold),
+              Brushes.Black,
+              new Point(w - 200, y)
+              );
+            y += 30;
+            foreach (ThongTinHoaDon tt in list)
+            {
+                e.Graphics.DrawString(
+                string.Format("{0}", tt.Mahang.ToString()),
+                new Font("Times New Roman", 12, FontStyle.Bold),
+                Brushes.Black,
+                new Point(10, y)
+                );
+                e.Graphics.DrawString(
+               string.Format("{0}", tt.Tenhang.ToString()),
+               new Font("Times New Roman", 12, FontStyle.Bold),
+               Brushes.Black,
+               new Point(170, y)
+               );
+                e.Graphics.DrawString(
+              string.Format("{0}", tt.Gia.ToString()),
+              new Font("Times New Roman", 12, FontStyle.Bold),
+              Brushes.Black,
+              new Point(w / 2 - 70, y)
+              );
+                e.Graphics.DrawString(
+             string.Format("{0}", tt.Soluong.ToString()),
+             new Font("Times New Roman", 12, FontStyle.Bold),
+             Brushes.Black,
+             new Point(w / 2 + 100, y)
+             );
+                e.Graphics.DrawString(
+             string.Format("{0}", tt.Thanhtien.ToString()),
+             new Font("Times New Roman", 12, FontStyle.Bold),
+             Brushes.Black,
+             new Point(w - 200, y)
+             );
+
+                y += 30;
+            }
+            y += 40;
+            Point p3 = new Point(10, y);
+            Point p4 = new Point(w - 10, y);
+            e.Graphics.DrawLine(blackpen, p3, p4);
+            y += 30;
+            e.Graphics.DrawString(
+             string.Format("Tổng tiền:{0}", txtThanhTien.Text.Trim()),
+             new Font("Times New Roman", 14, FontStyle.Bold),
+             Brushes.Black,
+             new Point(w - 250, y)
+             );
+            y += 70;
+            Point p5 = new Point(10, y);
+            Point p6 = new Point(w - 10, y);
+            e.Graphics.DrawLine(blackpen, p5, p6);
+        }
+
+        
     }
 }

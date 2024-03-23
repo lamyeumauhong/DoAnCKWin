@@ -46,9 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\BanHangDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\HangHoaDAO.cs" />
+    <Compile Include="DAO\HoaDonDAO.cs" />
     <Compile Include="DAO\LoaiHangDAO.cs" />
+    <Compile Include="DAO\NhanVienDAO.cs" />
     <Compile Include="DAO\TaiKhoanDAO.cs" />
     <Compile Include="DTO\BanHangDTO.cs" />
     <Compile Include="DTO\HangHoaDTO.cs" />
