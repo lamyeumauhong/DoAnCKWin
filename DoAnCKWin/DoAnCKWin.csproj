@@ -46,12 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAO\BanHangDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\HangHoaDAO.cs" />
-    <Compile Include="DAO\HoaDonDAO.cs" />
     <Compile Include="DAO\LoaiHangDAO.cs" />
-    <Compile Include="DAO\NhanVienDAO.cs" />
     <Compile Include="DAO\TaiKhoanDAO.cs" />
     <Compile Include="DTO\BanHangDTO.cs" />
     <Compile Include="DTO\HangHoaDTO.cs" />
@@ -60,30 +57,30 @@
     <Compile Include="DTO\NhaCungCapDTO.cs" />
     <Compile Include="DTO\TaiKhoanDTO.cs" />
     <Compile Include="DTO\ThongTinHoaDon.cs" />
-    <Compile Include="UI\FrmBanHang.cs">
+    <Compile Include="FrmBanHang.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FrmBanHang.Designer.cs">
+    <Compile Include="FrmBanHang.Designer.cs">
       <DependentUpon>FrmBanHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FrmDangNhap.cs">
+    <Compile Include="FrmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FrmDangNhap.Designer.cs">
+    <Compile Include="FrmDangNhap.Designer.cs">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FrmMain.cs">
+    <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FrmMain.Designer.cs">
+    <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="UI\FrmBanHang.resx">
+    <EmbeddedResource Include="FrmBanHang.resx">
       <DependentUpon>FrmBanHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\FrmDangNhap.resx">
+    <EmbeddedResource Include="FrmDangNhap.resx">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

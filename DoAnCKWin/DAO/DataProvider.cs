@@ -10,7 +10,7 @@ namespace DoAnCKWin.DAO
 {
     public class DataProvider
     {
-        private string cnnstr = @"Data Source=DESKTOP-74RKBUS;Initial Catalog=QLBanXeMay;User ID = sa; Password = 1234";
+        private string cnnstr = "Data Source=.;Initial Catalog=QLXE;User ID=sa;Password=123";
         private static DataProvider instance;
         public static DataProvider Instance
         {
