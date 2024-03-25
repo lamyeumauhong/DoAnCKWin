@@ -60,30 +60,30 @@
     <Compile Include="DTO\NhaCungCapDTO.cs" />
     <Compile Include="DTO\TaiKhoanDTO.cs" />
     <Compile Include="DTO\ThongTinHoaDon.cs" />
-    <Compile Include="FrmBanHang.cs">
+    <Compile Include="UI\FrmBanHang.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmBanHang.Designer.cs">
+    <Compile Include="UI\FrmBanHang.Designer.cs">
       <DependentUpon>FrmBanHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDangNhap.cs">
+    <Compile Include="UI\FrmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDangNhap.Designer.cs">
+    <Compile Include="UI\FrmDangNhap.Designer.cs">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMain.cs">
+    <Compile Include="UI\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.Designer.cs">
+    <Compile Include="UI\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmBanHang.resx">
+    <EmbeddedResource Include="UI\FrmBanHang.resx">
       <DependentUpon>FrmBanHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDangNhap.resx">
+    <EmbeddedResource Include="UI\FrmDangNhap.resx">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
