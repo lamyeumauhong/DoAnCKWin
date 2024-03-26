@@ -47,30 +47,7 @@ namespace DoAnCKWin
         {
             return TaiKhoanDAO.Instance.KtraAdmin(tk);
         }
-        ThongTinHoaDon ConvertBillInfo()
-        {
-            ThongTinHoaDon tthd = new ThongTinHoaDon();
-
-            ListViewItem item = listViewHoaDon.FocusedItem;
-            tthd.Mahang = Convert.ToInt32(item.SubItems[0].Text);
-            tthd.Tenhang = item.SubItems[1].Text;
-            tthd.Gia = (float)Convert.ToDouble(item.SubItems[2].Text);
-            tthd.Soluong = (float)Convert.ToDouble(item.SubItems[3].Text);
-            tthd.Thanhtien = (float)Convert.ToDouble(item.SubItems[4].Text);
-            return tthd;
-        }
-        void TinhTongTien()
-        {
-            float tongTien = 0;
-            foreach (ListViewItem item in listViewHoaDon.Items)
-            {
-                float thanhTien = float.Parse(item.SubItems[4].Text);
-                tongTien += thanhTien;
-            }
-            CultureInfo culture = new CultureInfo("vi-VN");
-            txtThanhTien.Text = tongTien.ToString("c", culture);
-
-        }
+        
         void LoadMANV()
         {
             txtMaNV.Text = ShareVar.tk.Manv.ToString();
@@ -90,11 +67,25 @@ namespace DoAnCKWin
             {
                 if (item.SubItems[0].Text == sanPham.Mahang.ToString())
                 {
-                    // Sản phẩm đã tồn tại trong danh sách, cập nhật số lượng và thành tiền
+                    // Cập nhật số lượng của sản phẩm đã tồn tại trong danh sách
                     float soLuongMoi = float.Parse(item.SubItems[3].Text) + sanPham.Soluong;
                     item.SubItems[3].Text = soLuongMoi.ToString();
-                    float thanhTienMoi = float.Parse(item.SubItems[4].Text) + (sanPham.Gia * sanPham.Soluong);
+
+                    // Cập nhật lại thành tiền của sản phẩm
+                    float thanhTienMoi = soLuongMoi * sanPham.Gia;
                     item.SubItems[4].Text = thanhTienMoi.ToString();
+
+                    // Cập nhật tổng tiền của sản phẩm
+                    foreach (ThongTinHoaDon tt in list)
+                    {
+                        if (tt.Mahang == sanPham.Mahang)
+                        {
+                            tt.Soluong = soLuongMoi;
+                            tt.Thanhtien = thanhTienMoi;
+                            break;
+                        }
+                    }
+
                     TinhTongTien();
                     return;
                 }
@@ -105,10 +96,50 @@ namespace DoAnCKWin
             newItem.SubItems.Add(sanPham.Tenhang);
             newItem.SubItems.Add(sanPham.Gia.ToString());
             newItem.SubItems.Add(sanPham.Soluong.ToString());
-            newItem.SubItems.Add(sanPham.Thanhtien.ToString());
+            newItem.SubItems.Add((sanPham.Soluong * sanPham.Gia).ToString()); // Thêm tổng tiền của sản phẩm
             listViewHoaDon.Items.Add(newItem);
+            list.Add(sanPham);
+
             TinhTongTien();
         }
+
+        private ThongTinHoaDon ConvertBillInfo()
+        {
+            ThongTinHoaDon tthd = new ThongTinHoaDon();
+
+            ListViewItem item = listViewHoaDon.FocusedItem;
+            tthd.Mahang = Convert.ToInt32(item.SubItems[0].Text);
+            tthd.Tenhang = item.SubItems[1].Text;
+            tthd.Gia = (float)Convert.ToDouble(item.SubItems[2].Text);
+            tthd.Soluong = (float)Convert.ToDouble(item.SubItems[3].Text);
+            tthd.Thanhtien = (float)Convert.ToDouble(item.SubItems[4].Text);
+            return tthd;
+        }
+
+        private void TinhTongTien()
+        {
+            float tongTien = 0;
+            foreach (ListViewItem item in listViewHoaDon.Items)
+            {
+                float thanhTien = float.Parse(item.SubItems[4].Text);
+                tongTien += thanhTien;
+            }
+            CultureInfo culture = new CultureInfo("vi-VN");
+            txtThanhTien.Text = tongTien.ToString("c", culture);
+
+            foreach (ThongTinHoaDon tt in list)
+            {
+                foreach (ListViewItem item in listViewHoaDon.Items)
+                {
+                    if (tt.Mahang.ToString() == item.SubItems[0].Text)
+                    {
+                        tt.Thanhtien = float.Parse(item.SubItems[4].Text);
+                        break;
+                    }
+                }
+            }
+        }
+
 
         private void btnTaoHoaDon_Click(object sender, EventArgs e)
         {
@@ -166,14 +197,9 @@ namespace DoAnCKWin
             tthd.Gia = hh.GiaKM;
             tthd.Soluong = sl;
             tthd.Thanhtien = tthd.Gia * tthd.Soluong;
-
-            // Thêm sản phẩm vào danh sách hoặc cập nhật số lượng nếu sản phẩm đã tồn tại
             ThemSanPhamVaoListView(tthd);
-
-            // Cập nhật giá trị của txtTongTien
             TinhTongTien();
         }
-
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
             if (list.Count() == 0)
@@ -181,29 +207,43 @@ namespace DoAnCKWin
                 MessageBox.Show("Hóa Đơn chưa có mặt hàng nào!", "Thông báo");
                 return;
             }
-           /* foreach (ThongTinHoaDon tt in list)
+
+            foreach (ThongTinHoaDon tt in list)
             {
-                int soLuongTonKho = HangHoaDAO.Instance.Soluongconkho(tt.Mahang);
+                int soLuongTonKho = HangHoaDAO.Instance.LaySoLuongTonKho(tt.Mahang);
                 if (tt.Soluong > soLuongTonKho)
                 {
                     MessageBox.Show($"Số lượng tồn kho không đủ cho sản phẩm {tt.Tenhang}!", "Thông báo");
                     return;
                 }
-            }*/
+            }
+
             int manv = Convert.ToInt32(txtMaNV.Text.Trim());
+            float TongTien = 0; // Khởi tạo biến tổng tiền
+            foreach (ThongTinHoaDon tt in list)
+            {
+                TongTien += tt.Thanhtien; // Tính tổng tiền từ danh sách sản phẩm
+            }
+
+            // Thêm hóa đơn mới vào cơ sở dữ liệu
             HoaDonDAO.Instance.InsertBill(manv);
             int mahd = HoaDonDAO.Instance.LayIDMax();
+
+            // Thêm thông tin chi tiết hóa đơn và cập nhật số lượng tồn vào bảng HangHoa
             foreach (ThongTinHoaDon tt in list)
             {
                 BanHangDAO.Instance.InsertBillInfo(mahd, tt.Mahang, tt.Soluong);
                 HangHoaDAO.Instance.CapNhatLuongHang(tt.Mahang, tt.Soluong);
+                HangHoaDAO.Instance.CapNhatSoLuongDaBan(tt.Mahang, tt.Soluong);
             }
-            flag = 1;
+
+            // Cập nhật tổng tiền cho hóa đơn
             HoaDonDAO.Instance.UpdateTongBill(mahd, TongTien);
 
+            // Hiển thị thông báo thành công
+            flag = 1;
             MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK);
         }
-
         private void btnInHoaDon_Click(object sender, EventArgs e)
         {
             if (flag == 1)
@@ -215,7 +255,6 @@ namespace DoAnCKWin
                 return;
             }
         }
-
         private void FrmBanHang_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult tl =
@@ -316,7 +355,7 @@ namespace DoAnCKWin
               new Point(w / 2 - 70, y)
               );
                 e.Graphics.DrawString(
-             string.Format("{0}", tt.Soluong.ToString()),
+             string.Format("{0}", tt.Soluong.ToString()), // Sử dụng số lượng từ đối tượng ThongTinHoaDon trong danh sách list
              new Font("Times New Roman", 12, FontStyle.Bold),
              Brushes.Black,
              new Point(w / 2 + 100, y)
@@ -346,7 +385,5 @@ namespace DoAnCKWin
             Point p6 = new Point(w - 10, y);
             e.Graphics.DrawLine(blackpen, p5, p6);
         }
-
-        
     }
 }

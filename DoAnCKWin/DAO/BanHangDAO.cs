@@ -25,10 +25,10 @@ namespace DoAnCKWin.DAO
         private BanHangDAO() { }
         public bool InsertBillInfo(int mahd, int mahang, float sl)
         {
-            string query = "insert into BanHang values(" + mahd + "," + mahang + "," + sl + ")";
-            bool f = false;
-            f = DataProvider.Instance.MyExcuteNonQuery(query);
+            string query = $"INSERT INTO BanHang VALUES ({mahd}, {mahang}, {sl});";
+            bool f = DataProvider.Instance.MyExcuteNonQuery(query);
             return f;
         }
+
     }
 }

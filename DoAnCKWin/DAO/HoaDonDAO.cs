@@ -30,6 +30,7 @@ namespace DoAnCKWin.DAO
             f = DataProvider.Instance.MyExcuteNonQuery(query);
             return f;
         }
+
         public int LayIDMax()
         {
             int i = 0;
@@ -47,9 +48,10 @@ namespace DoAnCKWin.DAO
         public bool UpdateTongBill(int mahd, float tien)
         {
             bool f = false;
-            string query = "update HoaDon set tongbill=tongbill + " + tien + " where MaHoaDon=" + mahd + "";
+            string query = "update HoaDon set tongbill = COALESCE(tongbill, 0) + " + tien + " where MaHoaDon = " + mahd;
             f = DataProvider.Instance.MyExcuteNonQuery(query);
             return f;
         }
+
     }
 }
