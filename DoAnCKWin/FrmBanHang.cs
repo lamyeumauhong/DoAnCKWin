@@ -200,30 +200,27 @@ namespace DoAnCKWin
                 return;
             }
 
+            float TongTien = 0;
             foreach (ThongTinHoaDon tt in list)
             {
-                int soLuongTonKho = HangHoaDAO.Instance.LaySoLuongTonKho(tt.Mahang);
-                if (tt.Soluong > soLuongTonKho)
-                {
-                    MessageBox.Show($"Số lượng tồn kho không đủ cho sản phẩm {tt.Tenhang}!", "Thông báo");
-                    return;
-                }
+                TongTien += tt.Thanhtien;
             }
+
+            // Insert bill and get bill ID
             int manv = Convert.ToInt32(txtMaNV.Text.Trim());
-            float TongTien = 0; 
-            foreach (ThongTinHoaDon tt in list)
-            {
-                TongTien += tt.Thanhtien; 
-            }
             HoaDonDAO.Instance.InsertBill(manv);
             int mahd = HoaDonDAO.Instance.LayIDMax();
+
+            // Update bill total
+            HoaDonDAO.Instance.UpdateTongBill(mahd, TongTien);
+
+            // Insert bill details and update inventory
             foreach (ThongTinHoaDon tt in list)
             {
                 BanHangDAO.Instance.InsertBillInfo(mahd, tt.Mahang, tt.Soluong);
                 HangHoaDAO.Instance.CapNhatLuongHang(tt.Mahang, tt.Soluong);
                 HangHoaDAO.Instance.CapNhatSoLuongDaBan(tt.Mahang, tt.Soluong);
             }
-            HoaDonDAO.Instance.UpdateTongBill(mahd, TongTien);
 
             flag = 1;
             MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK);
