@@ -61,8 +61,8 @@
             this.đổiTrảHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.ppdHoaDon = new System.Windows.Forms.PrintPreviewDialog();
             this.pDHoaDon = new System.Drawing.Printing.PrintDocument();
+            this.ppdHoaDon = new System.Windows.Forms.PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvThe)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -370,7 +370,6 @@
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
             this.adminToolStripMenuItem.Size = new System.Drawing.Size(55, 22);
             this.adminToolStripMenuItem.Text = "Admin";
-            this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
             // đăngKíThànhViênToolStripMenuItem
             // 
@@ -401,6 +400,10 @@
             this.pictureBox1.TabIndex = 24;
             this.pictureBox1.TabStop = false;
             // 
+            // pDHoaDon
+            // 
+            this.pDHoaDon.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pDHoaDon_PrintPage);
+            // 
             // ppdHoaDon
             // 
             this.ppdHoaDon.AutoScrollMargin = new System.Drawing.Size(0, 0);
@@ -410,11 +413,6 @@
             this.ppdHoaDon.Icon = ((System.Drawing.Icon)(resources.GetObject("ppdHoaDon.Icon")));
             this.ppdHoaDon.Name = "ppdHoaDon";
             this.ppdHoaDon.Visible = false;
-
-            // 
-            // pDHoaDon
-            // 
-            this.pDHoaDon.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pDHoaDon_PrintPage_1);
             // 
             // FrmBanHang
             // 
@@ -483,7 +481,7 @@
         private System.Windows.Forms.ToolStripMenuItem đăngKíThànhViênToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem đổiTrảHàngToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem đổiMậtKhẩuToolStripMenuItem;
-        private System.Windows.Forms.PrintPreviewDialog ppdHoaDon;
         private System.Drawing.Printing.PrintDocument pDHoaDon;
+        private System.Windows.Forms.PrintPreviewDialog ppdHoaDon;
     }
 }

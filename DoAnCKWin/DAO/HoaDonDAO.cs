@@ -52,6 +52,5 @@ namespace DoAnCKWin.DAO
             f = DataProvider.Instance.MyExcuteNonQuery(query);
             return f;
         }
-
     }
 }
