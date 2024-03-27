@@ -63,6 +63,26 @@ namespace DoAnCKWin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap anh_loading {
+            get {
+                object obj = ResourceManager.GetObject("anh_loading", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap anh_thoat {
+            get {
+                object obj = ResourceManager.GetObject("anh_thoat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap gio_hang {
             get {
                 object obj = ResourceManager.GetObject("gio_hang", resourceCulture);
@@ -76,6 +96,17 @@ namespace DoAnCKWin.Properties {
         internal static System.Drawing.Bitmap hinh_shop_login {
             get {
                 object obj = ResourceManager.GetObject("hinh_shop_login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kisspng_logo_motorcycle_brand_product_invention_ferris_bueller_ferrari_model_image_replica_ferrar_5be9a1fdb407a9_7260719915420380137374 {
+            get {
+                object obj = ResourceManager.GetObject("kisspng-logo-motorcycle-brand-product-invention-ferris-bueller-ferrari-model-imag" +
+                        "e-replica-ferrar-5be9a1fdb407a9.7260719915420380137374", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

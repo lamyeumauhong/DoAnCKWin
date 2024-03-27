@@ -18,40 +18,48 @@ namespace DoAnCKWin
             InitializeComponent();
         }
 
+        
+        bool KtraDangNhap(string taikhoan, string matkhau)
+        {
+            return TaiKhoanDAO.Instance.KtraDangNhap(taikhoan, matkhau);
+        }
+       
+        //------
+      
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-            if (KtraDangNhap(txtTaiKhoan.Text, txtMatKhau.Text))
+            if (txtTaiKhoan.Text == "admin" && txtMatKhau.Text == "admin")
             {
-                ShareVar.tk = TaiKhoanDAO.Instance.LayTaiKhoan(txtTaiKhoan.Text, txtMatKhau.Text);
-                FrmBanHang f = new FrmBanHang();
+                lberror.Visible = false;
+                FormLoad formLoad = new FormLoad();
+                formLoad.Show();
+                this.Hide();
+            }
+            else
+            {
+                lberror.Visible = true;
+                txtMatKhau.Focus();
+            }
+            /*if (KtraDangNhap(txtTaiKhoan.Text, txtTaiKhoan.Text))
+            {
+                lberror.Visible = false;
+                ShareVar.tk = TaiKhoanDAO.Instance.LayTaiKhoan(txtTaiKhoan.Text, txtTaiKhoan.Text);
+                FormLoad f = new FormLoad();
                 this.Hide();
                 f.ShowDialog();
                 this.Show();
             }
             else
-                MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        bool KtraDangNhap(string taikhoan, string matkhau)
-        {
-            return TaiKhoanDAO.Instance.KtraDangNhap(taikhoan, matkhau);
-        }
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void FrmDangNhap_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DialogResult tl = MessageBox.Show(" Bạn có chắc muốn thoát!", "Thông báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if (tl != DialogResult.Yes)
-                e.Cancel = true;
+            {
+                lberror.Visible = true;
+                txtMatKhau.Focus();
+            }*/
         }
 
         private void txtTaiKhoan_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
-                txtMatKhau.Focus();
+                txtTaiKhoan.Focus();
         }
 
         private void txtMatKhau_KeyPress(object sender, KeyPressEventArgs e)
@@ -71,9 +79,27 @@ namespace DoAnCKWin
             }
         }
 
-        private void btnHienMk_Click(object sender, EventArgs e)
+        private void phide_Click_1(object sender, EventArgs e)
         {
-            txtMatKhau.UseSystemPasswordChar = !txtMatKhau.UseSystemPasswordChar;
+            if (txtMatKhau.PasswordChar == '•')
+            {
+                peye.BringToFront();
+                txtMatKhau.PasswordChar = '\0';
+            }
+        }
+
+        private void peye_Click(object sender, EventArgs e)
+        {
+            if (txtMatKhau.PasswordChar == '\0')
+            {
+                phide.BringToFront();
+                txtMatKhau.PasswordChar = '•';
+            }
+        }
+
+        private void btn_Thoat_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
