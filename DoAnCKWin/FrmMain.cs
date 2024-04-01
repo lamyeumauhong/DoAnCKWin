@@ -41,5 +41,10 @@ namespace DoAnCKWin
             UC_KhachHang uC_KhachHang = new UC_KhachHang();
             addUserControl(uC_KhachHang );
         }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

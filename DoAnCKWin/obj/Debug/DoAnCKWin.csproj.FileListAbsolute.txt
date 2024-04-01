@@ -21,6 +21,7 @@ D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.CoreCompileInputs.ca
 D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.exe
 D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.pdb
 D:\DoAnCKWin\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.FrmBanHang.resources
+<<<<<<< HEAD
 D:\Nam2\HK2\WindowForm\Đồ-án-winform\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.AssemblyReference.cache
 D:\Nam2\HK2\WindowForm\Đồ-án-winform\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.FrmBanHang.resources
 D:\Nam2\HK2\WindowForm\Đồ-án-winform\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.FrmDangNhap.resources
@@ -41,3 +42,27 @@ D:\Nam2\HK2\WindowForm\Đồ-án-winform\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin
 D:\Nam2\HK2\WindowForm\Đồ-án-winform\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.User_ConTrol.UC_PhuTung.resources
 D:\Nam2\HK2\WindowForm\Đồ-án-winform\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.User_ConTrol.UC_KhachHang.resources
 D:\Nam2\HK2\WindowForm\Đồ-án-winform\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.User_ConTrol.UC_NhanVien.resources
+=======
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_K19\DoAnCKWin\DoAnCKWin\bin\Debug\DoAnCKWin.exe.config
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_K19\DoAnCKWin\DoAnCKWin\bin\Debug\DoAnCKWin.exe
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_K19\DoAnCKWin\DoAnCKWin\bin\Debug\DoAnCKWin.pdb
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_K19\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.AssemblyReference.cache
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_K19\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.FrmBanHang.resources
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_K19\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.FrmDangNhap.resources
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_K19\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.Properties.Resources.resources
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_K19\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.GenerateResource.cache
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_K19\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.CoreCompileInputs.cache
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_K19\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.exe
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_K19\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.pdb
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_NGTA\DoAnCKWin\DoAnCKWin\bin\Debug\DoAnCKWin.exe.config
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_NGTA\DoAnCKWin\DoAnCKWin\bin\Debug\DoAnCKWin.exe
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_NGTA\DoAnCKWin\DoAnCKWin\bin\Debug\DoAnCKWin.pdb
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_NGTA\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.AssemblyReference.cache
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_NGTA\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.FrmBanHang.resources
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_NGTA\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.FrmDangNhap.resources
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_NGTA\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.Properties.Resources.resources
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_NGTA\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.GenerateResource.cache
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_NGTA\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.csproj.CoreCompileInputs.cache
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_NGTA\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.exe
+D:\STUDY\NAM_2_KI_2\LAP_TRINH_WINDOWS\PROJECT_CUA_NGTA\DoAnCKWin\DoAnCKWin\obj\Debug\DoAnCKWin.pdb
+>>>>>>> c27f1a63392c4096f79a7015a8e0ffaa34d534be

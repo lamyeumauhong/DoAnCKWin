@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBanHang));
             this.btnXem = new System.Windows.Forms.Button();
             this.dtgvThe = new System.Windows.Forms.DataGridView();
             this.txtSDT = new System.Windows.Forms.TextBox();
@@ -60,6 +61,8 @@
             this.đổiTrảHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pDHoaDon = new System.Drawing.Printing.PrintDocument();
+            this.ppdHoaDon = new System.Windows.Forms.PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvThe)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -256,7 +259,6 @@
             this.cbHangHoa.Name = "cbHangHoa";
             this.cbHangHoa.Size = new System.Drawing.Size(171, 22);
             this.cbHangHoa.TabIndex = 1;
-            this.cbHangHoa.SelectedIndexChanged += new System.EventHandler(this.cbHangHoa_SelectedIndexChanged);
             // 
             // lbMaNV
             // 
@@ -398,6 +400,20 @@
             this.pictureBox1.TabIndex = 24;
             this.pictureBox1.TabStop = false;
             // 
+            // pDHoaDon
+            // 
+            this.pDHoaDon.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.pDHoaDon_PrintPage);
+            // 
+            // ppdHoaDon
+            // 
+            this.ppdHoaDon.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.ppdHoaDon.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.ppdHoaDon.ClientSize = new System.Drawing.Size(400, 300);
+            this.ppdHoaDon.Enabled = true;
+            this.ppdHoaDon.Icon = ((System.Drawing.Icon)(resources.GetObject("ppdHoaDon.Icon")));
+            this.ppdHoaDon.Name = "ppdHoaDon";
+            this.ppdHoaDon.Visible = false;
+            // 
             // FrmBanHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,5 +481,7 @@
         private System.Windows.Forms.ToolStripMenuItem đăngKíThànhViênToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem đổiTrảHàngToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem đổiMậtKhẩuToolStripMenuItem;
+        private System.Drawing.Printing.PrintDocument pDHoaDon;
+        private System.Windows.Forms.PrintPreviewDialog ppdHoaDon;
     }
 }

@@ -61,14 +61,34 @@ namespace DoAnCKWin.DAO
             }
             return list;
         }
+        public int LaySoLuongTonKho(int maHang)
+        {
+            int soLuongTonKho = 0;
+            string query = "SELECT Soluongconkho FROM HangHoa WHERE MaHang = " + maHang;
+            DataTable data = DataProvider.Instance.MyExcuteQuery(query);
+            if (data.Rows.Count > 0)
+            {
+                soLuongTonKho = Convert.ToInt32(data.Rows[0]["Soluongconkho"]);
+            }
+            return soLuongTonKho;
+        }
 
         public bool CapNhatLuongHang(int mahang, float sl)
         {
             bool f = false;
-            string query = "update HangHoa set Soluongconkho=Soluongconkho-(" + sl + ") where MaHang=" + mahang + "";
-            string query2 = "update HangHoa set Soluongconkho=0 where MaHang=" + mahang + " and Soluongconkho<0 ";
+            string query = $"UPDATE HangHoa SET Soluongconkho = Soluongconkho - {sl} WHERE MaHang = {mahang}";
+            string query2 = $"UPDATE HangHoa SET Soluongconkho = 0 WHERE MaHang = {mahang} AND Soluongconkho < 0";
             DataProvider.Instance.MyExcuteNonQuery(query);
             f = DataProvider.Instance.MyExcuteNonQuery(query2);
+            return f;
+        }
+
+        // Thêm phương thức cập nhật số lượng đã bán của từng sản phẩm vào bảng HangHoa
+        public bool CapNhatSoLuongDaBan(int mahang, float sl)
+        {
+            bool f = false;
+            string query = $"UPDATE HangHoa SET SoLuongDaBan = SoLuongDaBan + {sl} WHERE MaHang = {mahang}";
+            f = DataProvider.Instance.MyExcuteNonQuery(query);
             return f;
         }
         public bool ThemHangHoa(int loaihang, string tenhang, float giaban, int NCC)
